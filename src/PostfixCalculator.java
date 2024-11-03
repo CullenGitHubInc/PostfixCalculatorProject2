@@ -75,7 +75,7 @@ public class PostfixCalculator {
     public static void main(String[] args) {
         PostfixCalculator calculator = new PostfixCalculator();
 
-        // Example test cases
+        // these are example test runs of digit operands, using some from module instructions
         System.out.println("Result 1: " + calculator.evaluatePostfix("4 2 * 3 +"));
         System.out.println("Result 2: " + calculator.evaluatePostfix("5 3 + 7 *"));
         System.out.println("Result 3: " + calculator.evaluatePostfix("8 4 - 6 *"));
