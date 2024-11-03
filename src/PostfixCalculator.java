@@ -8,17 +8,17 @@ public class PostfixCalculator {
     public int evaluatePostfix(String postfixExpression) {
         Stack<Integer> stack = new Stack<>();
 
-        // Split by spaces to correctly parse each operand/operator
+        // breaking down the postfix expression (split by spaces) into operands and operators so they process seperately 
         String[] tokens = postfixExpression.split(" ");
 
         for (String token : tokens) {
-            // Check if the token is an integer
-            if (token.matches("-?\\d+")) {  // Matches both positive and negative integers
+            // Check to see whether the token is an integer
+            if (token.matches("-?\\d+")) {  // this shows there is match for both pos and neg integers 
                 int num = Integer.parseInt(token);
                 stack.push(num);
                 System.out.println("Pushed number: " + num);
             }
-            // Check if the token is a valid operator
+            // this checks whether the token is a valid operator or not 
             else if (token.equals("+") || token.equals("-") || token.equals("*") || token.equals("/") || token.equals("%")) {
                 if (stack.size() < 2) {
                     System.out.println("Error: Not enough operands for operation '" + token + "'");
@@ -54,7 +54,7 @@ public class PostfixCalculator {
             return Integer.MIN_VALUE;
         }
 
-        return stack.pop(); // Return the final result
+        return stack.pop(); // returning the final result
     }
 
     public void evaluateFromFile(String filename) {
@@ -80,7 +80,7 @@ public class PostfixCalculator {
         System.out.println("Result 2: " + calculator.evaluatePostfix("5 3 + 7 *"));
         System.out.println("Result 3: " + calculator.evaluatePostfix("8 4 - 6 *"));
 
-        // Optionally, evaluate expressions from a file
+        // trying to evaluate expressions from a file 
         calculator.evaluateFromFile("expressions.txt");
     }
 }
