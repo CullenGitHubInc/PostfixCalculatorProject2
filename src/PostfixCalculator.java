@@ -16,12 +16,12 @@ public class PostfixCalculator {
             if (token.matches("-?\\d+")) {  // this shows there is match for both pos and neg integers 
                 int num = Integer.parseInt(token);
                 stack.push(num);
-                System.out.println("Pushed number: " + num);
+                System.out.println("pushed number: " + num);
             }
             // this checks whether the token is a valid operator or not 
             else if (token.equals("+") || token.equals("-") || token.equals("*") || token.equals("/") || token.equals("%")) {
                 if (stack.size() < 2) {
-                    System.out.println("Error: Not enough operands for operation '" + token + "'");
+                    System.out.println("Error - too few operands '" + token + "'");
                     return Integer.MIN_VALUE;
                 }
                 int b = stack.pop();
@@ -34,7 +34,7 @@ public class PostfixCalculator {
                     case "*": result = a * b; break;
                     case "/":
                         if (b == 0) {
-                            System.out.println("Error: Division by zero");
+                            System.out.println("Error - zero division");
                             return Integer.MIN_VALUE;
                         }
                         result = a / b;
@@ -50,7 +50,7 @@ public class PostfixCalculator {
         }
 
         if (stack.size() != 1) {
-            System.out.println("Error: Invalid postfix expression - multiple items left in stack.");
+            System.out.println("Error - invalid postfix expression - too much left in stack..");
             return Integer.MIN_VALUE;
         }
 
@@ -68,7 +68,7 @@ public class PostfixCalculator {
                 }
             }
         } catch (IOException e) {
-            System.out.println("Error reading file: " + e.getMessage());
+            System.out.println("Error- file read: " + e.getMessage());
         }
     }
 
@@ -76,9 +76,9 @@ public class PostfixCalculator {
         PostfixCalculator calculator = new PostfixCalculator();
 
         // these are example test runs of digit operands, using some from module instructions
-        System.out.println("Result 1: " + calculator.evaluatePostfix("4 2 * 3 +"));
-        System.out.println("Result 2: " + calculator.evaluatePostfix("5 3 + 7 *"));
-        System.out.println("Result 3: " + calculator.evaluatePostfix("8 4 - 6 *"));
+        System.out.println("First Result: " + calculator.evaluatePostfix("4 2 * 3 +"));
+        System.out.println("Second Result: " + calculator.evaluatePostfix("5 3 + 7 *"));
+        System.out.println("Third Result: " + calculator.evaluatePostfix("8 4 - 6 *"));
 
         // trying to evaluate expressions from a file 
         calculator.evaluateFromFile("expressions.txt");
